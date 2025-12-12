@@ -152,10 +152,6 @@ class EpubService
         return null;
     }
 
-    /**
-     * Public: return chapter HTML string with rewritten resource URLs
-     * - chapterIndex is 0-based
-     */
     public function getChapterHtml(int $bookId, int $chapterIndex): array
     {
         $zip = $this->openZip($bookId);
@@ -172,7 +168,6 @@ class EpubService
 
         $href = $spine[$chapterIndex];
 
-        // find real file path in zip
         $realPath = $this->findRealPath($href, $zipFiles);
         if ($realPath === null) {
             $zip->close();
@@ -185,75 +180,72 @@ class EpubService
             throw new \Exception("failed to read chapter content: {$realPath}");
         }
 
-        // load HTML, preserve encoding
         libxml_use_internal_errors(true);
-        $dom = new DOMDocument();
-        // ensure proper UTF-8 parsing
+
+        // HTML fragment 로드
+        $dom = new \DOMDocument();
         $dom->loadHTML('<?xml encoding="utf-8" ?>' . $raw, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        libxml_clear_errors();
+        $xpath = new \DOMXPath($dom);
 
-        $xpath = new DOMXPath($dom);
-        // register xlink namespace for SVG xlink:href queries
-        $xpath->registerNamespace('xlink', 'http://www.w3.org/1999/xlink');
-
-        $chapterDir = rtrim(dirname($realPath), '/');
-
-        // helper to build asset URL route
-        $assetUrl = function(string $assetPath) use ($bookId) {
-            // we'll use API route: /api/books/{bookId}/asset?path=...
-            return url("/api/books/{$bookId}/asset?path=" . rawurlencode($assetPath));
-        };
+        // helper: ZIP 내부 경로 그대로 API 경로 생성
+        $assetUrl = fn(string $assetPath) => url("/api/books/{$bookId}/asset?path=" . rawurlencode($assetPath));
 
         // 1) <img src="">
         foreach ($xpath->query('//img[@src]') as $img) {
             $src = $img->getAttribute('src');
-            if (preg_match('#^https?://#i', $src)) continue;
-
-            // src may be relative to chapter file directory
-            $candidate = $chapterDir ? ($chapterDir . '/' . $src) : $src;
-            $real = $this->findRealPath($candidate, $zipFiles);
-            if ($real === null) {
-                // fallback: try src itself / filename search
+            if (!preg_match('#^https?://#i', $src)) {
                 $real = $this->findRealPath($src, $zipFiles);
-            }
-            if ($real !== null) {
-                $img->setAttribute('src', $assetUrl($real));
+                if ($real !== null) $img->setAttribute('src', $assetUrl($real));
             }
         }
 
         // 2) <link rel="stylesheet" href="">
         foreach ($xpath->query('//link[@rel="stylesheet" and @href]') as $link) {
             $href = $link->getAttribute('href');
-            if (preg_match('#^https?://#i', $href)) continue;
-
-            $candidate = $chapterDir ? ($chapterDir . '/' . $href) : $href;
-            $real = $this->findRealPath($candidate, $zipFiles) ?? $this->findRealPath($href, $zipFiles);
-            if ($real !== null) $link->setAttribute('href', $assetUrl($real));
+            if (!preg_match('#^https?://#i', $href)) {
+                $real = $this->findRealPath($href, $zipFiles);
+                if ($real !== null) $link->setAttribute('href', $assetUrl($real));
+            }
         }
 
-        // 3) SVG and other xlink:href attributes (e.g. <image xlink:href="...">)
-        foreach ($xpath->query('//*[@xlink:href]') as $node) {
-            $val = $node->getAttribute('xlink:href');
-            if (preg_match('#^https?://#i', $val)) continue;
+        // 3) SVG/xlink 처리: 각 <svg> 태그만 별도로 XML로 로드
+        foreach ($xpath->query('//svg') as $svgNode) {
+            $svgXml = $dom->saveHTML($svgNode);
+            $svgDom = new \DOMDocument();
+            $svgDom->loadXML($svgXml);
+            $svgXpath = new \DOMXPath($svgDom);
+            $svgXpath->registerNamespace('xlink', 'http://www.w3.org/1999/xlink');
 
-            $candidate = $chapterDir ? ($chapterDir . '/' . $val) : $val;
-            $real = $this->findRealPath($candidate, $zipFiles) ?? $this->findRealPath($val, $zipFiles);
-            if ($real !== null) $node->setAttribute('xlink:href', $assetUrl($real));
+            foreach ($svgXpath->query('//*[@xlink:href]') as $node) {
+                $val = $node->getAttribute('xlink:href');
+                if (!preg_match('#^https?://#i', $val)) {
+                    $real = $this->findRealPath($val, $zipFiles);
+                    if ($real !== null) $node->setAttribute('xlink:href', $assetUrl($real));
+                }
+            }
+
+            // 수정된 svg를 원래 dom에 반영
+            $newSvg = $dom->importNode($svgDom->documentElement, true);
+            $svgNode->parentNode->replaceChild($newSvg, $svgNode);
         }
 
-        // Optionally: rewrite <a href> to route through API if you want to intercept navigation (not required)
-
-        // prepare html to return - include head+body (dom->saveHTML returns fragment)
-        $html = $dom->saveHTML();
+        // DOM -> HTML fragment로 변환
+        $innerHtml = '';
+        foreach ($dom->documentElement->childNodes as $child) {
+            $innerHtml .= $dom->saveHTML($child);
+        }
 
         $zip->close();
+        libxml_clear_errors();
 
         return [
-            'html' => $html,
+            'html' => $innerHtml,
             'totalChapters' => count($spine),
             'chapterIndex' => $chapterIndex,
         ];
     }
+
+
 
     /**
      * Asset endpoint: read file binary and return with proper mime

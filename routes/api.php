@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/books/{bookId}/chapter', [EpubController::class, 'chapter']);
-Route::get('/books/{bookId}/asset', [EpubController::class, 'asset']);
+Route::get('/books/{bookId}/chapter', [EpubController::class, 'chapter'])
+    ->withoutMiddleware('throttle:api'); // throttle 미들웨어 제거;
+Route::get('/books/{bookId}/asset', [EpubController::class, 'asset'])
+    ->withoutMiddleware('throttle:api');
 
