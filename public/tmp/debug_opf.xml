@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+  <metadata xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:opf="http://www.idpf.org/2007/opf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <dc:publisher>Infogrid Pacific</dc:publisher>
+    <dc:description>Font rendering for multiple languages in a single ePub 3</dc:description>
+    <dc:language>en</dc:language>
+    <dc:creator opf:file-as="Unknown" opf:role="aut">Infogrid Pacific</dc:creator>
+    <meta name="calibre:timestamp" content="2019-12-07T02:39:54.603894+00:00"/>
+    <dc:title>Around the World in 28 Languages</dc:title>
+    <meta name="cover" content="cover"/>
+    <dc:date>2011-12-15T00:00:00+00:00</dc:date>
+    <dc:contributor opf:role="bkp">calibre (3.21.0) [http://calibre-ebook.com]</dc:contributor>
+    <dc:identifier id="uuid_id" opf:scheme="uuid">1085a0fb-8f7c-4e62-953a-e674a1d4a033</dc:identifier>
+  </metadata>
+  <manifest>
+    <item href="OPS/images/igpn-28languages-01.jpg" id="cover" media-type="image/jpeg"/>
+    <item href="OPS/fonts/DejaVuSansCondensed-Bold.ttf" id="fonts-005" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSansCondensed-BoldOblique.ttf" id="fonts-002" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSansCondensed-Oblique.ttf" id="fonts-006" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSansCondensed.ttf" id="fonts-010" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSansMono-Bold.ttf" id="fonts-015" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSansMono-BoldOblique.ttf" id="fonts-004" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSansMono.ttf" id="fonts-007" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerif-Bold.ttf" id="fonts-011" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerif-BoldOblique.ttf" id="fonts-014" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerif-Oblique.ttf" id="fonts-009" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerif.ttf" id="fonts-008" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerifCondensed-Bold.ttf" id="fonts-001" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerifCondensed-BoldItalic.ttf" id="fonts-013" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerifCondensed-Italic.ttf" id="fonts-003" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/fonts/DejaVuSerifCondensed.ttf" id="fonts-012" media-type="application/vnd.ms-opentype"/>
+    <item href="OPS/images/aroundtheworldtitletexture_online.jpg" id="images-002" media-type="image/jpeg"/>
+    <item href="OPS/images/igp_logo_300_online.png" id="images-001" media-type="image/png"/>
+    <item href="OPS/s001-BookTitlePage-01.xhtml" id="s001" media-type="application/xhtml+xml"/>
+    <item href="OPS/s002-Copyright-01.xhtml" id="s002" media-type="application/xhtml+xml"/>
+    <item href="OPS/s003-Introduction-01.xhtml" id="s003" media-type="application/xhtml+xml"/>
+    <item href="OPS/s004-Chapter-001.xhtml" id="s004" media-type="application/xhtml+xml"/>
+    <item href="OPS/s005-Chapter-002.xhtml" id="s005" media-type="application/xhtml+xml"/>
+    <item href="OPS/s006-Chapter-003.xhtml" id="s006" media-type="application/xhtml+xml"/>
+    <item href="OPS/s007-Chapter-004.xhtml" id="s007" media-type="application/xhtml+xml"/>
+    <item href="OPS/s008-Chapter-005.xhtml" id="s008" media-type="application/xhtml+xml"/>
+    <item href="OPS/s009-Chapter-006.xhtml" id="s009" media-type="application/xhtml+xml"/>
+    <item href="OPS/s010-Chapter-007.xhtml" id="s010" media-type="application/xhtml+xml"/>
+    <item href="OPS/s011-Chapter-008.xhtml" id="s011" media-type="application/xhtml+xml"/>
+    <item href="OPS/s012-Chapter-009.xhtml" id="s012" media-type="application/xhtml+xml"/>
+    <item href="OPS/s013-Chapter-010.xhtml" id="s013" media-type="application/xhtml+xml"/>
+    <item href="OPS/s014-Chapter-011.xhtml" id="s014" media-type="application/xhtml+xml"/>
+    <item href="OPS/s015-Chapter-012.xhtml" id="s015" media-type="application/xhtml+xml"/>
+    <item href="OPS/s016-Chapter-013.xhtml" id="s016" media-type="application/xhtml+xml"/>
+    <item href="OPS/s017-Chapter-014.xhtml" id="s017" media-type="application/xhtml+xml"/>
+    <item href="OPS/s018-Chapter-015.xhtml" id="s018" media-type="application/xhtml+xml"/>
+    <item href="OPS/s019-Chapter-016.xhtml" id="s019" media-type="application/xhtml+xml"/>
+    <item href="OPS/s020-Chapter-017.xhtml" id="s020" media-type="application/xhtml+xml"/>
+    <item href="OPS/s021-Chapter-018.xhtml" id="s021" media-type="application/xhtml+xml"/>
+    <item href="OPS/s022-Chapter-019.xhtml" id="s022" media-type="application/xhtml+xml"/>
+    <item href="OPS/s023-Chapter-020.xhtml" id="s023" media-type="application/xhtml+xml"/>
+    <item href="OPS/s024-Chapter-021.xhtml" id="s024" media-type="application/xhtml+xml"/>
+    <item href="OPS/s025-Chapter-022.xhtml" id="s025" media-type="application/xhtml+xml"/>
+    <item href="OPS/s026-Chapter-023.xhtml" id="s026" media-type="application/xhtml+xml"/>
+    <item href="OPS/s027-Chapter-024.xhtml" id="s027" media-type="application/xhtml+xml"/>
+    <item href="OPS/s028-Chapter-025.xhtml" id="s028" media-type="application/xhtml+xml"/>
+    <item href="OPS/s029-Chapter-026.xhtml" id="s029" media-type="application/xhtml+xml"/>
+    <item href="OPS/s030-Chapter-027.xhtml" id="s030" media-type="application/xhtml+xml"/>
+    <item href="OPS/s031-Chapter-028.xhtml" id="s031" media-type="application/xhtml+xml"/>
+    <item href="page_styles.css" id="page_css" media-type="text/css"/>
+    <item href="stylesheet.css" id="css" media-type="text/css"/>
+    <item href="titlepage.xhtml" id="titlepage" media-type="application/xhtml+xml"/>
+    <item href="toc.ncx" id="ncx" media-type="application/x-dtbncx+xml"/>
+  </manifest>
+  <spine toc="ncx" page-progression-direction="ltr">
+    <itemref idref="titlepage"/>
+    <itemref idref="s001"/>
+    <itemref idref="s002"/>
+    <itemref idref="s003"/>
+    <itemref idref="s004"/>
+    <itemref idref="s005"/>
+    <itemref idref="s006"/>
+    <itemref idref="s007"/>
+    <itemref idref="s008"/>
+    <itemref idref="s009"/>
+    <itemref idref="s010"/>
+    <itemref idref="s011"/>
+    <itemref idref="s012"/>
+    <itemref idref="s013"/>
+    <itemref idref="s014"/>
+    <itemref idref="s015"/>
+    <itemref idref="s016"/>
+    <itemref idref="s017"/>
+    <itemref idref="s018"/>
+    <itemref idref="s019"/>
+    <itemref idref="s020"/>
+    <itemref idref="s021"/>
+    <itemref idref="s022"/>
+    <itemref idref="s023"/>
+    <itemref idref="s024"/>
+    <itemref idref="s025"/>
+    <itemref idref="s026"/>
+    <itemref idref="s027"/>
+    <itemref idref="s028"/>
+    <itemref idref="s029"/>
+    <itemref idref="s030"/>
+    <itemref idref="s031"/>
+  </spine>
+  <guide>
+    <reference href="titlepage.xhtml" title="Cover Image" type="cover"/>
+  </guide>
+</package>
